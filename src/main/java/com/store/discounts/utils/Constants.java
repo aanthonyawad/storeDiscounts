@@ -42,5 +42,11 @@ public class Constants {
 	public static final int GROCERIES_VALUE = 0;
 	public static final int OTHER_VALUE = 1;
 	
+
+	// ======================================
+	// = LOG TO DATABASE =
+	// ======================================
+	
+	public static final int LOG_BILL = 0;
 	
 }

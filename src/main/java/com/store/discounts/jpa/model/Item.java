@@ -1,12 +1,16 @@
 package com.store.discounts.jpa.model;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,6 +35,11 @@ public class Item {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "item_type", referencedColumnName = "id")
 	private ItemType itemType;
+	
+
+
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="item")
+	private Set<CustomerBillHistory> customerBillHistory;
 
 	public Item() {
 		super();
@@ -83,6 +92,14 @@ public class Item {
 		itemType.setItem(this);
 		itemType.setName(lookup.getName());
 		itemType.setValue(lookup.getData());
+	}
+
+	public Set<CustomerBillHistory> getCustomerBillHistory() {
+		return customerBillHistory;
+	}
+
+	public void setCustomerBillHistory(Set<CustomerBillHistory> customerBillHistory) {
+		this.customerBillHistory = customerBillHistory;
 	}
 
 }

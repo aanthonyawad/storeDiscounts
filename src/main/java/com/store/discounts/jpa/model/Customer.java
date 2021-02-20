@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.store.discounts.rest.exception.IncompleteRequestException;
 import com.store.discounts.rest.request.CustomerRequest;
 import com.store.discounts.utils.LookupUtils;
 import com.store.discounts.utils.StringUtils;
@@ -43,9 +44,10 @@ public class Customer {
 		super();
 	}
 
-	public Customer(CustomerRequest customer) {
+	public Customer(CustomerRequest customer) throws IncompleteRequestException{
 		this.id = customer.getId();
 		this.name = customer.getName();
+		if(!this.checkFields())throw new IncompleteRequestException("Customer Fields Are Incomplete!!");
 	}
 
 	public long getId() {
@@ -73,7 +75,7 @@ public class Customer {
 	}
 
 	public boolean checkFields() {
-		return this.id > 0 && !StringUtils.isEmptyOrNull(this.name) && this.name.length() <= 256;
+		return this.id >= 0 && !StringUtils.isEmptyOrNull(this.name) && this.name.length() <= 256;
 	}
 
 	public void setMembership(Lookup lookup) {

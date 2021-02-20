@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.store.discounts.rest.exception.IncompleteRequestException;
 import com.store.discounts.rest.request.ItemRequest;
 import com.store.discounts.utils.StringUtils;
 
@@ -45,9 +46,10 @@ public class Item {
 		super();
 	}
 
-	public Item(ItemRequest item) {
+	public Item(ItemRequest item) throws IncompleteRequestException {
 		this.name = item.getName();
 		this.price = item.getPrice();
+		if(!this.checkRequestFields()) throw new IncompleteRequestException("Incomple item sent !!");
 	}
 
 	public long getId() {
@@ -84,6 +86,10 @@ public class Item {
 
 	public boolean checkFields() {
 		return this.id > 0 && !StringUtils.isEmptyOrNull(this.name) && this.name.length() <= 256
+				&& this.price > 0;
+	}
+	public boolean checkRequestFields() {
+		return !StringUtils.isEmptyOrNull(this.name) && this.name.length() <= 256
 				&& this.price > 0;
 	}
 

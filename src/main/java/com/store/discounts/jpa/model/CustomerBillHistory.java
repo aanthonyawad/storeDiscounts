@@ -1,9 +1,7 @@
 package com.store.discounts.jpa.model;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,45 +26,39 @@ public class CustomerBillHistory {
 	@ManyToOne
 	@JoinColumn(name = "customer")
 	private Customer customer;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "item")
 	private Item item;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP",name="insert_date")
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name = "insert_date")
 	private Date insertDate;
 
 	public CustomerBillHistory() {
 		super();
 	}
 
-
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
 	public Customer getCustomer() {
 		return customer;
 	}
-
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
-
 	public Item getItem() {
 		return item;
 	}
-
 
 	public void setItem(Item item) {
 		this.item = item;
@@ -77,16 +68,12 @@ public class CustomerBillHistory {
 		return insertDate;
 	}
 
-
 	public void setInsertDate(Date insertDate) {
 		this.insertDate = insertDate;
 	}
 
-
 	public boolean checkFields() {
 		return this.id > 0 && this.insertDate != null;
 	}
-
-
 
 }

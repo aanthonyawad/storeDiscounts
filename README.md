@@ -10,7 +10,7 @@ Store discounts is an app that calculates the store discounts based on the custo
 - H2 in memory database to persist the data
 
 ## Generates
-A runnable jar that will be can be used hit on the enpdoint http://localhost:8080/
+A runnable jar will be generated that will be can be used hit on the enpdoint http://localhost:8080/
 
 ## How To generate the jar
 ```bash

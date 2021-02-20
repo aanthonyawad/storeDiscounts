@@ -32,6 +32,8 @@ SonarQube will test the code quality and report bugs or defects in the code it i
 ```bash
 mvn sonar:sonar -Dsonar.projectKey=com.store.discounts -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d7c4a871f46591a44eae70c3e48401a59b9f0d5c
 ```
+## Swagger documentaion under
+http://localhost:8080/swagger-ui.html
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

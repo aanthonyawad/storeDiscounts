@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -39,7 +39,7 @@ public class BillController {
 
 	@Autowired
 	ItemRepository itemRepository;
-	@GetMapping(path = "/")
+	@PostMapping(path = "/bill")
 	public ResponseEntity<BillResponse> calculateDiscount(@RequestBody BillRequest billRequest)
 			throws MembershipNotFoundException, ItemTypeNotFoundException {
 		Customer customer = new Customer(billRequest.getCustomer());
@@ -49,7 +49,7 @@ public class BillController {
 				.orElseThrow(() -> new MembershipNotFoundException("Membership not found!!"));
 		customer.setMembership(custumerMembershipLookup);
 		
-		List<Item> items = new ArrayList<Item>();
+		List<Item> items = new ArrayList<>();
 		for (ItemRequest ir : billRequest.getItems()) {
 			Item item = new Item(ir);
 //			find item type from predefined values
@@ -60,7 +60,7 @@ public class BillController {
 		}
 		double netPayableAmount = netAmountService.returnNetAmount(items, customer);
 		BillResponse billResponse = new BillResponse(netPayableAmount);
-		return new ResponseEntity<BillResponse>(billResponse,HttpStatus.OK);
+		return new ResponseEntity<>(billResponse,HttpStatus.OK);
 	}
 
 	@RestControllerAdvice

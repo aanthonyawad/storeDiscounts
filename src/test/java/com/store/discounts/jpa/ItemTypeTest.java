@@ -22,7 +22,7 @@ import com.store.discounts.jpa.repository.ItemTypeRepository;
 
 @DataJpaTest
 @TestMethodOrder(OrderAnnotation.class)
-public class ItemTypeTest {
+class ItemTypeTest {
 	// ======================================
 	// = Attributes =
 	// ======================================
@@ -44,7 +44,7 @@ public class ItemTypeTest {
 	/**
 	 * This test tries to create an Item with valid values.
 	 */
-	public void testCreateValidItemType() {
+	void testCreateValidItemType() {
 		this.setUp();
 		assertEquals("groceries", validItemType.getName());
 		assertEquals(1, validItemType.getId());
@@ -59,7 +59,7 @@ public class ItemTypeTest {
 	/**
 	 * This test tries to create Item with invalid values.
 	 */
-	public void testCreateInvalidItemType() {
+	void testCreateInvalidItemType() {
 		// Creates objects with empty values
 		ItemType itemType = new ItemType();
 		itemType.setId(0);
@@ -80,7 +80,7 @@ public class ItemTypeTest {
 	/**
 	 * This test tries to create an instance of the ItemType object in the mem db
 	 */
-	public void testCreateItemType() {
+	void testCreateItemType() {
 		this.setUp();// create
 		this.itemTypeRepository.save(this.validItemType);// add
 		assertNotNull(validItemType);// check
@@ -93,7 +93,7 @@ public class ItemTypeTest {
 	 * This test tries to find an instance of the ItemType object in the DB by value
 	 * 
 	 */
-	public void testFindItemTypeByName() {
+	void testFindItemTypeByName() {
 		String name = "groceries";
 		Optional<ItemType> oItemType = this.itemTypeRepository.findByName(name);// find
 		ItemType itemType = oItemType.orElse(null);
@@ -108,7 +108,7 @@ public class ItemTypeTest {
 	 * This test tries to fail finding an instance of the ItemType object in the mem
 	 * db by value
 	 */
-	public void testFindItemTypeByNameNotExists() {
+	void testFindItemTypeByNameNotExists() {
 		String name = "Chips";
 		Optional<ItemType> oItemType = this.itemTypeRepository.findByName(name);// find
 		ItemType itemType = oItemType.orElse(null);
@@ -121,7 +121,7 @@ public class ItemTypeTest {
 	/**
 	 * This test tries to update an instance of the ItemType object in the mem db
 	 */
-	public void testUpdateItemType() {
+	void testUpdateItemType() {
 		String name = "groceries";
 		String newName = "Chips";
 		Optional<ItemType> oItemType = this.itemTypeRepository.findByName(name);// find
@@ -138,10 +138,10 @@ public class ItemTypeTest {
 	/**
 	 * This test tries to the instance of the ItemType object in the mem db
 	 */
-	public void testListItemType() {
+	void testListItemType() {
 		Iterable<ItemType> memIterable = this.itemTypeRepository.findAll();
 		assertNotNull(memIterable);
-		assertThat(memIterable).size().isGreaterThan(0);
+		assertThat(memIterable).size().isPositive();
 	}
 
 	@Test
@@ -150,7 +150,7 @@ public class ItemTypeTest {
 	/**
 	 * This test tries delete an instance of the ItemType object in the mem db
 	 */
-	public void testDeleteItemType() {
+	void testDeleteItemType() {
 		String name = "groceries";
 		Optional<ItemType> oItemType = this.itemTypeRepository.findByName(name);// find
 		ItemType itemType = oItemType.orElse(null);

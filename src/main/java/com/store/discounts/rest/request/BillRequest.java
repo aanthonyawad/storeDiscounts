@@ -19,7 +19,6 @@ public class BillRequest {
 	
 	public BillRequest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomerRequest getCustomer() {

@@ -22,7 +22,7 @@ import com.store.discounts.jpa.repository.CustomerRepository;
 
 @DataJpaTest
 @TestMethodOrder(OrderAnnotation.class)
-public class CustomerTests {
+class CustomerTests {
 	// ======================================
 	// = Attributes =
 	// ======================================
@@ -30,7 +30,7 @@ public class CustomerTests {
 	@Autowired
 	CustomerRepository customerRepository;
 
-	public void setUp() {
+	void setUp() {
 		// Creates a valid customer
 		validCustomer = new Customer();
 		validCustomer.setId(1);
@@ -44,7 +44,7 @@ public class CustomerTests {
 	/**
 	 * This test tries to create a customer with valid values.
 	 */
-	public void testCreateValidCustomer() {
+	void testCreateValidCustomer() {
 		this.setUp();
 		assertEquals("Anthony", validCustomer.getName());
 		assertEquals(1, validCustomer.getId());
@@ -58,7 +58,7 @@ public class CustomerTests {
 	/**
 	 * This test tries to create Customer with invalid values.
 	 */
-	public void testCreateInvalidCustomer() {
+	void testCreateInvalidCustomer() {
 		// Creates objects with empty values
 		Customer customer = new Customer();
 		customer.setId(0);
@@ -76,7 +76,7 @@ public class CustomerTests {
 	/**
 	 * This test tries to create an instance of the Customer object in the mem db
 	 */
-	public void testCreateCustomer() {
+	void testCreateCustomer() {
 		this.setUp();// create
 		this.customerRepository.save(this.validCustomer);// add
 		assertNotNull(validCustomer);// check
@@ -89,7 +89,7 @@ public class CustomerTests {
 	 * This test tries to find an instance of the Customer object in the DB by value
 	 * 
 	 */
-	public void testFindCustomerByName() {
+	void testFindCustomerByName() {
 		String name = "Anthony";
 		Optional<Customer> oCustomer = this.customerRepository.findByName(name);// find
 		Customer customer = oCustomer.orElse(null);
@@ -104,7 +104,7 @@ public class CustomerTests {
 	 * This test tries to fail finding an instance of the Customer object in the mem
 	 * db by value
 	 */
-	public void testFindCustomerByNameNotExists() {
+	void testFindCustomerByNameNotExists() {
 		String name = "Jhonny";
 		Optional<Customer> oCustomer = this.customerRepository.findByName(name);// find
 		Customer customer = oCustomer.orElse(null);
@@ -117,7 +117,7 @@ public class CustomerTests {
 	/**
 	 * This test tries to update an instance of the Customer object in the mem db
 	 */
-	public void testUpdateCustomer() {
+	void testUpdateCustomer() {
 		String name = "Anthony";
 		String newName = "Jhonny";
 		Optional<Customer> oCustomer = this.customerRepository.findByName(name);// find
@@ -134,10 +134,10 @@ public class CustomerTests {
 	/**
 	 * This test tries to the instance of the Customer object in the mem db
 	 */
-	public void testListCustomer() {
+	void testListCustomer() {
 		Iterable<Customer> memIterable = this.customerRepository.findAll();
 		assertNotNull(memIterable);
-		assertThat(memIterable).size().isGreaterThan(0);
+		assertThat(memIterable).size().isPositive();
 	}
 
 	@Test
@@ -146,7 +146,7 @@ public class CustomerTests {
 	/**
 	 * This test tries delete an instance of the Customer object in the mem db
 	 */
-	public void testDeleteCustomer() {
+	void testDeleteCustomer() {
 		String name = "Anthony";
 		Optional<Customer> oCustomer = this.customerRepository.findByName(name);// find
 		Customer customer = oCustomer.orElse(null);

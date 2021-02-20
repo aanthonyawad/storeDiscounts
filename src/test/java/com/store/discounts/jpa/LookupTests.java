@@ -22,7 +22,7 @@ import com.store.discounts.jpa.repository.LookupRepository;
 
 @DataJpaTest
 @TestMethodOrder(OrderAnnotation.class)
-public class LookupTests {
+class LookupTests {
 	// ======================================
 	// = Attributes =
 	// ======================================
@@ -45,7 +45,7 @@ public class LookupTests {
 	/**
 	 * This test tries to create an Lookup with valid values.
 	 */
-	public void testCreateValidLookup() {
+	void testCreateValidLookup() {
 		this.setUp();
 		assertEquals(50, validLookup.getId());
 		assertEquals(50, validLookup.getData());
@@ -61,7 +61,7 @@ public class LookupTests {
 	/**
 	 * This test tries to create Lookup with invalid values.
 	 */
-	public void testCreateInvalidLookup() {
+	void testCreateInvalidLookup() {
 		// Creates objects with empty values
 		Lookup lookup = new Lookup();
 		lookup.setId(0);
@@ -82,7 +82,7 @@ public class LookupTests {
 	/**
 	 * This test tries to create an instance of the Lookup object in the mem db
 	 */
-	public void testCreateLookup() {
+	void testCreateLookup() {
 		this.setUp();// create
 		this.lookupRepository.save(this.validLookup);// add
 		assertNotNull(validLookup);// check
@@ -95,7 +95,7 @@ public class LookupTests {
 	 * This test tries to find an instance of the Lookup object in the DB by value
 	 * 
 	 */
-	public void testFindLookupByValue() {
+	void testFindLookupByValue() {
 		int value = 1;// create
 		int category = 0;// create
 		Optional<Lookup> oLookup = this.lookupRepository.findByDataAndCategory(value, category);// find
@@ -111,7 +111,7 @@ public class LookupTests {
 	 * This test tries to fail finding an instance of the Lookup object in the mem
 	 * db by value
 	 */
-	public void testFindLookupByValueNotExists() {
+	void testFindLookupByValueNotExists() {
 		int value = 2;// create
 		int category = 1;// create
 		Optional<Lookup> oLookup = this.lookupRepository.findByDataAndCategory(value, category);// find
@@ -125,7 +125,7 @@ public class LookupTests {
 	/**
 	 * This test tries to update an instance of the Lookup object in the mem db
 	 */
-	public void testUpdateLookup() {
+	void testUpdateLookup() {
 		int value = 1;// create
 		int category = 0;// create
 		String newName = "Affiliate2";
@@ -143,10 +143,10 @@ public class LookupTests {
 	/**
 	 * This test tries to the instance of the Lookup object in the mem db
 	 */
-	public void testListLookup() {
+	void testListLookup() {
 		Iterable<Lookup> memIterable = this.lookupRepository.findAll();
 		assertNotNull(memIterable);
-		assertThat(memIterable).size().isGreaterThan(0);
+		assertThat(memIterable).size().isPositive();
 	}
 
 	@Test
@@ -155,7 +155,7 @@ public class LookupTests {
 	/**
 	 * This test tries delete an instance of the Lookup object in the mem db
 	 */
-	public void testDeleteLookup() {
+	void testDeleteLookup() {
 		int value = 1;// create;
 		int category = 0;// create
 		Optional<Lookup> oLookup = this.lookupRepository.findByDataAndCategory(value, category);// find

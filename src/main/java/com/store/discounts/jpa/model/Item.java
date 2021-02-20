@@ -74,7 +74,6 @@ public class Item {
 	}
 
 	public boolean checkFields() {
-		// TODO Auto-generated method stub
 		return this.id > 0 && !StringUtils.isEmptyOrNull(this.name) && this.name.length() <= 256
 				&& this.price > 0;
 	}

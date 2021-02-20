@@ -22,7 +22,7 @@ import com.store.discounts.jpa.repository.MembershipRepository;
 
 @DataJpaTest
 @TestMethodOrder(OrderAnnotation.class)
-public class MembershipTests {
+ class MembershipTests {
 	// ======================================
 	// = Attributes =
 	// ======================================
@@ -30,7 +30,7 @@ public class MembershipTests {
 	@Autowired
 	MembershipRepository membershipRepository;
 
-	public void setUp() {
+	 void setUp() {
 		// Creates a valid customer
 		validMembership = new Membership();
 		validMembership.setId(1);
@@ -45,7 +45,7 @@ public class MembershipTests {
 	/**
 	 * This test tries to create an Membership with valid values.
 	 */
-	public void testCreateValidMembership() {
+	 void testCreateValidMembership() {
 		this.setUp();
 		assertEquals(1, validMembership.getId());
 		assertEquals(1, validMembership.getPriority());
@@ -61,7 +61,7 @@ public class MembershipTests {
 	/**
 	 * This test tries to create Membership with invalid values.
 	 */
-	public void testCreateInvalidMembership() {
+	 void testCreateInvalidMembership() {
 		// Creates objects with empty values
 		Membership membership = new Membership();
 		membership.setId(0);
@@ -86,7 +86,7 @@ public class MembershipTests {
 	/**
 	 * This test tries to create an instance of the Membership object in the mem db
 	 */
-	public void testCreateMembership() {
+	 void testCreateMembership() {
 		this.setUp();// create
 		this.membershipRepository.save(this.validMembership);// add
 		assertNotNull(validMembership);// check
@@ -99,7 +99,7 @@ public class MembershipTests {
 	 * This test tries to find an instance of the Membership object in the DB by the
 	 * user priority
 	 */
-	public void testFindMembershipByPriority() {
+	 void testFindMembershipByPriority() {
 		int priority = 1;// create
 		Optional<Membership> oMembership = this.membershipRepository.findByPriority(priority);// find
 		Membership membership = oMembership.orElse(null);
@@ -114,7 +114,7 @@ public class MembershipTests {
 	 * This test tries to fail find finding an instance of the Membership object in
 	 * the DB by the user priority
 	 */
-	public void testFindMembershipByPriorityNotExists() {
+	 void testFindMembershipByPriorityNotExists() {
 		int priority = 2;// create
 		Optional<Membership> oMembership = this.membershipRepository.findByPriority(priority);// find
 		Membership membership = oMembership.orElse(null);
@@ -128,7 +128,7 @@ public class MembershipTests {
 	 * This test tries update an instance of the Membership object in the DB by the
 	 * user priority
 	 */
-	public void testUpdateMembership() {
+	 void testUpdateMembership() {
 		int priority = 1;// create
 		String newName = "Affiliate2";
 		Optional<Membership> oMembership = this.membershipRepository.findByPriority(priority);// find
@@ -145,10 +145,10 @@ public class MembershipTests {
 	/**
 	 * This test tries list instances of the Membership object in the DB
 	 */
-	public void testListMembership() {
+	 void testListMembership() {
 		Iterable<Membership> memIterable = this.membershipRepository.findAll();
 		assertNotNull(memIterable);
-		assertThat(memIterable).size().isGreaterThan(0);
+		assertThat(memIterable).size().isPositive();
 	}
 
 	@Test
@@ -157,7 +157,7 @@ public class MembershipTests {
 	/**
 	 * This test tries to delete an instance of the Membership object in the DB
 	 */
-	public void testDeleteMembership() {
+	 void testDeleteMembership() {
 		int priority = 1;// create;
 		Optional<Membership> oMembership = this.membershipRepository.findByPriority(priority);// find
 		Membership membership = oMembership.orElse(null);

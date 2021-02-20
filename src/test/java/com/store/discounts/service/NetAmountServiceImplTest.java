@@ -14,19 +14,20 @@ import com.store.discounts.jpa.model.Membership;
 import com.store.discounts.service.impl.NetAmountServiceImpl;
 import com.store.discounts.utils.Constants;
 
-public class NetAmountServiceImplTest {
+class NetAmountServiceImplTest {
 	// ======================================
 	// = Attributes =
 	// ======================================
 	NetAmountServiceImpl netAmountServiceImpl = new NetAmountServiceImpl();
-	
+
 	@Test
 	/**
-	 * This test tries to calculate net amount without groceries included for an employee
+	 * This test tries to calculate net amount without groceries included for an
+	 * employee
 	 */
-	public void testCalculateNetAmountForEmployee() {
-		
-		Customer customer= new Customer(); 
+	void testCalculateNetAmountForEmployee() {
+
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -36,7 +37,7 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.EMPLOYEE_VALUE);
 		membership.setDiscount(Constants.EMPLOYEE_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 70;
 		Item item1 = new Item();
@@ -49,8 +50,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.OTHER_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -61,23 +61,21 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
+
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
 	}
-	
 
 	@Test
 	/**
-	 * This test tries to calculate net amount with groceries included for an employee
+	 * This test tries to calculate net amount with groceries included for an
+	 * employee
 	 */
-	public void testCalculateNetAmountForEmployeeWithGroceries() {
-		
+	void testCalculateNetAmountForEmployeeWithGroceries() {
 
-		Customer customer= new Customer(); 
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -87,7 +85,7 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.EMPLOYEE_VALUE);
 		membership.setDiscount(Constants.EMPLOYEE_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 120;
 		Item item1 = new Item();
@@ -100,8 +98,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.GROCERIES_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -112,22 +109,21 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType2.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
+
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
 	}
-	
 
 	@Test
 	/**
-	 * This test tries to calculate net amount without groceries included for an affiliate
+	 * This test tries to calculate net amount without groceries included for an
+	 * affiliate
 	 */
-	public void testCalculateNetAmountForAffiliate() {
-		
-		Customer customer= new Customer(); 
+	void testCalculateNetAmountForAffiliate() {
+
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -137,7 +133,7 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.AFFILIATE_VALUE);
 		membership.setDiscount(Constants.AFFILIATE_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 90;
 		Item item1 = new Item();
@@ -150,8 +146,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.OTHER_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -162,23 +157,21 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType2.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
+
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
 	}
-	
 
 	@Test
 	/**
-	 * This test tries to calculate net amount with groceries included for an affiliate
+	 * This test tries to calculate net amount with groceries included for an
+	 * affiliate
 	 */
-	public void testCalculateNetAmountForAffiliateWithGroceries() {
-		
+	void testCalculateNetAmountForAffiliateWithGroceries() {
 
-		Customer customer= new Customer(); 
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -188,7 +181,7 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.AFFILIATE_VALUE);
 		membership.setDiscount(Constants.AFFILIATE_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 140;
 		Item item1 = new Item();
@@ -201,8 +194,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.GROCERIES_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -213,22 +205,21 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType2.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
+
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
 	}
-	
 
 	@Test
 	/**
-	 * This test tries to calculate net amount without groceries included for a loyal customer
+	 * This test tries to calculate net amount without groceries included for a
+	 * loyal customer
 	 */
-	public void testCalculateNetAmountForLoyalCustomer() {
-		
-		Customer customer= new Customer(); 
+	void testCalculateNetAmountForLoyalCustomer() {
+
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -238,7 +229,7 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.LOYAL_CUSTOMER_VALUE);
 		membership.setDiscount(Constants.LOYAL_CUSTOMER_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 95;
 		Item item1 = new Item();
@@ -251,8 +242,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.OTHER_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -263,23 +253,21 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType2.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
+
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
 	}
-	
 
 	@Test
 	/**
-	 * This test tries to calculate net amount with groceries included for a loyal customer
+	 * This test tries to calculate net amount with groceries included for a loyal
+	 * customer
 	 */
-	public void testCalculateNetAmountForLoyalCustomerWithGroceries() {
-		
+	void testCalculateNetAmountForLoyalCustomerWithGroceries() {
 
-		Customer customer= new Customer(); 
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -289,7 +277,7 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.LOYAL_CUSTOMER_VALUE);
 		membership.setDiscount(Constants.LOYAL_CUSTOMER_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 145;
 		Item item1 = new Item();
@@ -302,8 +290,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.GROCERIES_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -314,22 +301,21 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType2.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
-	}
 
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
+	}
 
 	@Test
 	/**
-	 * This test tries to calculate net amount without groceries included for an no discount customer
+	 * This test tries to calculate net amount without groceries included for an no
+	 * discount customer
 	 */
-	public void testCalculateNetAmountForNoDiscountCustomer() {
-		
-		Customer customer= new Customer(); 
+	void testCalculateNetAmountForNoDiscountCustomer() {
+
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -339,7 +325,7 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.REGULAR_CUSTOMER_VALUE);
 		membership.setDiscount(Constants.REGULAR_CUSTOMER_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 100;
 		Item item1 = new Item();
@@ -352,8 +338,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.OTHER_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -364,23 +349,21 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType2.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
+
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
 	}
-	
 
 	@Test
 	/**
-	 * This test tries to calculate net amount with groceries included for an no discount customer
+	 * This test tries to calculate net amount with groceries included for an no
+	 * discount customer
 	 */
-	public void testCalculateNetAmountForNoDiscountCustomerWithGroceries() {
-		
+	void testCalculateNetAmountForNoDiscountCustomerWithGroceries() {
 
-		Customer customer= new Customer(); 
+		Customer customer = new Customer();
 		customer.setId(1);
 		customer.setName("Anthony");
 		Membership membership = new Membership();
@@ -390,10 +373,10 @@ public class NetAmountServiceImplTest {
 		membership.setPriority(Constants.REGULAR_CUSTOMER_VALUE);
 		membership.setDiscount(Constants.REGULAR_CUSTOMER_DISCOUNT);
 		customer.setMembership(membership);
-		
+
 		List<Item> input = new ArrayList<Item>();
 		double excpectedOutput = 150;
-		
+
 		Item item1 = new Item();
 		item1.setId(1);
 		item1.setName("cheese");
@@ -404,8 +387,7 @@ public class NetAmountServiceImplTest {
 		itemType.setValue(Constants.GROCERIES_VALUE);
 		itemType.setItem(item1);
 		item1.setItemType(itemType);
-		
-		
+
 		Item item2 = new Item();
 		item2.setId(2);
 		item2.setName("chips");
@@ -416,13 +398,11 @@ public class NetAmountServiceImplTest {
 		itemType2.setValue(Constants.OTHER_VALUE);
 		itemType2.setItem(item2);
 		item2.setItemType(itemType2);
-		
-		
+
 		input.add(item1);
 		input.add(item2);
-		
-		assertEquals(netAmountServiceImpl.returnNetAmount(input,customer), excpectedOutput);
-	}
 
+		assertEquals(netAmountServiceImpl.returnNetAmount(input, customer), excpectedOutput);
+	}
 
 }

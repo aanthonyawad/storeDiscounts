@@ -22,7 +22,7 @@ import com.store.discounts.jpa.repository.ItemRepository;
 
 @DataJpaTest
 @TestMethodOrder(OrderAnnotation.class)
-public class ItemTest {
+class ItemTest {
 	// ======================================
 	// = Attributes =
 	// ======================================
@@ -45,7 +45,7 @@ public class ItemTest {
 	/**
 	 * This test tries to create an Item with valid values.
 	 */
-	public void testCreateValidItem() {
+	void testCreateValidItem() {
 		this.setUp();
 		assertEquals("Cheese", validItem.getName());
 		assertEquals(1, validItem.getId());
@@ -60,7 +60,7 @@ public class ItemTest {
 	/**
 	 * This test tries to create Item with invalid values.
 	 */
-	public void testCreateInvalidItem() {
+	void testCreateInvalidItem() {
 		// Creates objects with empty values
 		Item item = new Item();
 		item.setId(0);
@@ -81,7 +81,7 @@ public class ItemTest {
 	/**
 	 * This test tries to create an instance of the Item object in the mem db
 	 */
-	public void testCreateItem() {
+	void testCreateItem() {
 		this.setUp();// create
 		this.itemRepository.save(this.validItem);// add
 		assertNotNull(validItem);// check
@@ -94,7 +94,7 @@ public class ItemTest {
 	 * This test tries to find an instance of the Item object in the DB by value
 	 * 
 	 */
-	public void testFindItemByName() {
+	void testFindItemByName() {
 		String name = "Cheese";
 		Optional<Item> oItem = this.itemRepository.findByName(name);// find
 		Item item = oItem.orElse(null);
@@ -106,10 +106,10 @@ public class ItemTest {
 	@Rollback(true)
 	@Order(5)
 	/**
-	 * This test tries to fail finding an instance of the Item object in the mem
-	 * db by value
+	 * This test tries to fail finding an instance of the Item object in the mem db
+	 * by value
 	 */
-	public void testFindItemByNameNotExists() {
+	void testFindItemByNameNotExists() {
 		String name = "Chips";
 		Optional<Item> oItem = this.itemRepository.findByName(name);// find
 		Item item = oItem.orElse(null);
@@ -122,7 +122,7 @@ public class ItemTest {
 	/**
 	 * This test tries to update an instance of the Item object in the mem db
 	 */
-	public void testUpdateItem() {
+	void testUpdateItem() {
 		String name = "Cheese";
 		String newName = "Chips";
 		Optional<Item> oItem = this.itemRepository.findByName(name);// find
@@ -139,10 +139,10 @@ public class ItemTest {
 	/**
 	 * This test tries to the instance of the Item object in the mem db
 	 */
-	public void testListItem() {
+	void testListItem() {
 		Iterable<Item> memIterable = this.itemRepository.findAll();
 		assertNotNull(memIterable);
-		assertThat(memIterable).size().isGreaterThan(0);
+		assertThat(memIterable).size().isPositive();
 	}
 
 	@Test
@@ -151,7 +151,7 @@ public class ItemTest {
 	/**
 	 * This test tries delete an instance of the Item object in the mem db
 	 */
-	public void testDeleteItem() {
+	void testDeleteItem() {
 		String name = "Cheese";
 		Optional<Item> oItem = this.itemRepository.findByName(name);// find
 		Item item = oItem.orElse(null);

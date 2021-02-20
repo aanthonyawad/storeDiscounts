@@ -1,6 +1,10 @@
 package com.store.discounts.utils;
 
 public class Constants {
+	
+	private Constants() {
+		
+	}
 
 	// ======================================
 	// = DISCOUNTS =

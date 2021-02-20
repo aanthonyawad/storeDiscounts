@@ -8,7 +8,6 @@ public class BillResponse {
 
 	public BillResponse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BillResponse(double netPayableAmount) {

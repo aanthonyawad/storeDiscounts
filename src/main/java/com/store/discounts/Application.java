@@ -10,7 +10,10 @@ import com.store.discounts.jpa.model.Lookup;
 import com.store.discounts.jpa.repository.LookupRepository;
 import com.store.discounts.utils.Constants;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
+@EnableSwagger2
 public class Application {
 	@Autowired
 	LookupRepository lookupRepository;

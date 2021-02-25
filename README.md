@@ -18,7 +18,7 @@ to test the app use mvn test
 ```
 
 ```bash
-to run generate the jar use mvn compile
+to generate the jar use mvn compile
 ```
 
 ```bash
